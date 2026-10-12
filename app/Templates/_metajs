@@ -1,0 +1,7 @@
+/* eslint-disable import/no-anonymous-default-export */
+export default {
+  Folder_name: "Title", //1
+   Js_Execution_Process: "JS Execution Process",//2
+   Javascript_Scope: "JavaScript Scope",//3
+};
+

@@ -1,0 +1,14 @@
+
+import Image from 'next/image';
+import img1 from './16d8662a-a385-4676-9d87-727b8db01444.png';
+import img2 from './JavaScript_definition_-_visual_selection_(2).svg';
+
+
+---
+
+<div className=' flex flex-col lg:flex-row justify-between gap-5 lg:gap-0'>
+<Image src={img1} alt="Custom Image"height={100000} className='  w-full lg:w-[49%]' />
+---
+<Image src={img2} alt="Custom Image" height={10000} className='  w-full lg:w-[49%]' />
+</div>
+---

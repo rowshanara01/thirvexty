@@ -1,0 +1,120 @@
+# What is Scope?
+
+import Image from 'next/image';
+import Types from './JavaScript definition - visual selection (27).svg';
+import Area from './JavaScript_definition_-_visual_selection_(25).svg';
+
+## স্কোপ কী?
+
+স্কোপ হলো বর্তমান এক্সিকিউশন কনটেক্সট যেখানে তার ভিতরের ভেরিয়েবল, ভ্যালু বা এক্সপ্রেশন দেখা ও ব্যবহার করা যায়। যদি কোনো ভেরিয়েবল বা এক্সপ্রেশন স্কোপে না থাকে বা এর বাইরে থাকে, তাহলে সেটাকে ব্যবহার করা যাবে না। স্কোপগুলো ধাপে ধাপে সাজানো থাকতে পারে — যেখানে **child স্কোপ তার parent স্কোপের access পায়**, কিন্তু **parent স্কোপ তার child স্কোপে access পায় না**।
+
+---
+
+##  গ্লোবাল স্কোপ (Global Scope)
+
+এটা হচ্ছে ডিফল্ট স্কোপ। যখন আমরা স্ক্রিপ্ট মোডে কোড লিখি, তখন আমাদের কোড এই গ্লোবাল স্কোপের মধ্যে থাকে।
+
+যেমনঃ `script.js` ফাইলকে যদি `<script type="text/javascript">` বা টাইপ না দিয়ে HTML এ যুক্ত করি (ES Module না), তখন সেটা global scoped হবে।
+
+```jsx
+let name = "thrivext"; // global scope
+function greet() {
+  console.log(name); // ✅ এখানে name অ্যাক্সেস করা যাবে
+}
+name = 'Thrivext' // ✅ এখানেও name অ্যাক্সেস করা যাবে
+```
+
+---
+
+##  মডিউল স্কোপ (Module Scope)
+
+যখন তুমি `module` মোডে কোড চালাও (যেমন: `<script type="module">` বা `.mjs` ফাইল), তখন প্রত্যেকটা ফাইল নিজেই একটা আলাদা স্কোপ তৈরি করে।
+
+> 📌 উল্লেখযোগ্য যে React/Next.js-এ সব ফাইলই module scoped।
+> 
+
+🔒 এর ভিতরের ভেরিয়েবল বাইরের স্কোপে যায় না, যদি না তুমি `export` করো।
+
+```jsx
+// userInfo.js (ES module)
+let userName = "Thrivext";
+```
+
+```jsx
+// profile.js বা React component
+console.log(userName); // ❌ Error: userName is not defined
+```
+
+✅ যদি `export` করো:
+
+```jsx
+// userInfo.js
+export let userName = "Thrivext";
+```
+
+```jsx
+// profile.js
+import { userName } from './userInfo';
+console.log(userName); // ✅ Thrivext
+```
+
+---
+
+##  লোকাল স্কোপ (Local Scope)
+
+লোকাল স্কোপ হলো JavaScript এ এমন একটা নিজস্ব ছোট জগৎ, যেটা `function`, `block {}` বা `condition` এর ভিতরে তৈরি হয়। লোকাল স্কোপের ভিতরের ভেরিয়েবল গ্লোবাল থেকে দেখা যায় না, কিন্তু লোকাল স্কোপ থেকে গ্লোবাল স্কোপে থাকা জিনিস ব্যবহার করা যায়।
+
+লোকাল স্কোপ দুই রকম হতে পারে:
+
+1. Function Scope
+2. Block Scope
+
+---
+
+###  Function Scope
+
+যখন তুমি কোনো ফাংশনের ভিতরে ভেরিয়েবল declare করো, সেটা শুধু ঐ ফাংশনের ভিতরেই access করা যায়।
+
+```jsx
+function sayHi() {
+  let name = "Thrivext"; // function scoped
+  console.log(name);
+}
+
+console.log(name); // ❌ Error: name is not defined
+```
+
+👉 `name` শুধু `sayHi()` এর ভিতরে scoped — বাইরে গেলে পাওয়া যাবে না।
+
+---
+
+###  Block Scope (ES6 থেকে এসেছে)
+
+যখন তুমি কোনো `{}` ব্লকের ভিতরে `let` বা `const` দিয়ে ভেরিয়েবল declare করো, সেটা শুধু সেই ব্লকের ভিতরেই থাকে।
+
+```jsx
+if (true) {
+  let age = 20; // block scoped
+  console.log(age); // ✅
+}
+
+console.log(age); // ❌ Error: age is not defined
+```
+
+> ⚠️ কিন্তু যদি var দিয়ে declare করতে, তাহলে সেটা block scoped হতো না। কারণ var কেবল function scoped।
+> 
+
+
+<div className=' flex flex-col lg:flex-row justify-between gap-5 lg:gap-0'>
+<Image src={Types} alt="Custom Image" height={10000} className='  w-full lg:w-[49%]' />
+
+---
+
+<Image src={Area} alt="Custom Image"height={100000} className='  w-full lg:w-[49%]' />
+</div>
+
+
+
+Table of Contents
+
+---

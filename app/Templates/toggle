@@ -1,0 +1,13 @@
+
+
+import Toggle from "/components/Toggle";
+
+
+import MdxContent from "./MdxContent.mdx";
+
+<Toggle title='স্কোপ চেইন ও এর কাজ' children={<MdxContent/>}/>
+
+ 
+    
+   
+    

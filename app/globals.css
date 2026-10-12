@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  :root {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+  }
+}
+
+.animated-gradient {
+
+  background-size: 150% 150%;
+  animation: gradient-animation 8s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: right;
+  }
+  25% {
+    background-position: left;
+  }
+  50%{
+    background-position: top;
+  }
+  75% {
+    background-position: bottom;
+  }
+  100%{
+    background-position: right;
+  }
+}
+
+.animated-gradient-button:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
